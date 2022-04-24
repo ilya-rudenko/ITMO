@@ -1,0 +1,28 @@
+package data;
+
+public enum MpaaRating implements EnumInterface{
+    G("G"),
+    PG("PG"),
+    PG_13("PG_13");
+
+    private String value;
+    MpaaRating(String value){
+        this.value=value;
+    }
+    public String getValue(){
+        return value;
+    }
+    public boolean includesInEnum(String str){
+        for (MpaaRating val:MpaaRating.values()){
+            if (str.equals(val.getValue())) return true;
+        }
+        return false;
+    }
+    public static MpaaRating getEnum(String req,boolean nullable){
+        if (req==null && nullable) return null;
+        for (MpaaRating val:MpaaRating.values()){
+            if (req.equals(val.getValue())) return val;
+        }
+        return null;
+    }
+}
